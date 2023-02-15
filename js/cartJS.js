@@ -1,3 +1,5 @@
+let cartList = JSON.parse(localStorage.getItem("carts") || "[]");
+
 function showCart() {
     let str = ``;
     str += `
@@ -11,7 +13,7 @@ function showCart() {
             </thead>
             <tbody>
             `
-    let cartList = JSON.parse(localStorage.getItem("carts")||"[]");
+
     for (const c of cartList) {
         str += `
             <tr>
@@ -25,6 +27,66 @@ function showCart() {
         </table>
     `
     document.getElementById("cartBody").innerHTML = str;
+    console.log(new Date().toLocaleString())
 
 }
+
 showCart();
+
+function pay() {
+    let bill = {
+        "id": "",
+        "date": '2011/11/11',
+        "account": {"id": "1"}
+    }
+
+    $.ajax({
+        type: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            // 'Authorization': 'Bearer ' + localStorage.getItem("token")
+
+        },
+        url: "http://localhost:8080/bills/",
+        data: JSON.stringify(bill),
+        //xử lý khi thành công
+        success: function () {
+            alert("Thành công");
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+    createBillDetails();
+}
+
+function createBillDetails() {
+    for (let i = 0; i < ; i++) {
+        
+    }
+    let billdetail = {
+        "id": "",
+        "amount": '3',
+        "bill": {"id": "1"},
+        "product": {"id": "1"},
+    }
+    $.ajax({
+        type: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            // 'Authorization': 'Bearer ' + localStorage.getItem("token")
+
+        },
+        url: "http://localhost:8080/billdetails/",
+        data: JSON.stringify(billdetail),
+        //xử lý khi thành công
+        success: function () {
+            alert("Thành công");
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}
