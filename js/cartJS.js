@@ -59,34 +59,56 @@ function pay() {
         }
     })
     createBillDetails();
+
+
+
+}
+getNewBill();
+function createBillDetails() {
+    for (let i = 0; i < cartList.length; i++) {
+        let billdetail = {
+            "id": "",
+            "amount": cartList[i].amount,
+            "bill": {"id":  $("#hihi").val()},
+            "product": {"id": cartList[i].id},
+        }
+        $.ajax({
+            type: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                // 'Authorization': 'Bearer ' + localStorage.getItem("token")
+
+            },
+            url: "http://localhost:8080/billdetails/",
+            data: JSON.stringify(billdetail),
+            //xử lý khi thành công
+            success: function () {
+                // alert("Thành công");
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+
 }
 
-function createBillDetails() {
-    for (let i = 0; i < ; i++) {
-        
-    }
-    let billdetail = {
-        "id": "",
-        "amount": '3',
-        "bill": {"id": "1"},
-        "product": {"id": "1"},
-    }
-    $.ajax({
-        type: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            // 'Authorization': 'Bearer ' + localStorage.getItem("token")
+function getNewBill(){
+        $.ajax({
+            type: "GET",
+            headers: {
+                'Accept': 'application/json',
+                // 'Authorization': 'Bearer ' + localStorage.getItem("token")
+            },
+            url: "http://localhost:8080/bills/getNewBill/",
+            //xử lý khi thành công
+            success: function (newBillId) {
+                document.getElementById("hihi").setAttribute("value",newBillId)
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
 
-        },
-        url: "http://localhost:8080/billdetails/",
-        data: JSON.stringify(billdetail),
-        //xử lý khi thành công
-        success: function () {
-            alert("Thành công");
-        },
-        error: function (err) {
-            console.log(err)
-        }
-    })
 }
