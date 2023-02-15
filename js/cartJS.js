@@ -13,13 +13,16 @@ function showCart() {
             </thead>
             <tbody>
             `
-
+let i=0;
     for (const c of cartList) {
+        i+=1;
         str += `
             <tr>
                 <td>${c.name}</td>
                 <td>${c.amount}</td>
                 <td>${c.price}</td>
+                <td><a type="button" class="btn btn-light" onclick="deleteItemFromCart(${i})">Delete</a>
+</td>
             </tr>`
     }
     str += `
@@ -32,12 +35,23 @@ function showCart() {
 }
 
 showCart();
-
+function  deleteItemFromCart(c) {
+    cartList.splice(c-1,1);
+    localStorage.setItem("carts", JSON.stringify(cartList));
+    location.reload();
+}
 function pay() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+
     let bill = {
         "id": "",
-        "date": '2011/11/11',
-        "account": {"id": "1"}
+        "date": today,
+        "account": {"id": localStorage.getItem("id")}
     }
 
     $.ajax({
@@ -59,9 +73,6 @@ function pay() {
         }
     })
     createBillDetails();
-
-
-
 }
 getNewBill();
 function createBillDetails() {

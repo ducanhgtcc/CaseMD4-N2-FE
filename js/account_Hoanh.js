@@ -101,11 +101,6 @@ function checkSortPassword(password) {
 
 }
 
-
-
-
-
-
 function checkDuplicateUserName(name) {
 
     $.ajax({

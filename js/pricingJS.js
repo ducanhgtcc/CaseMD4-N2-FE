@@ -34,7 +34,7 @@ function showProductUser() {
                              <p class="color-4 prev-indent-bot">${product.name}</>
                              <p>${product.description}</p>
                              <div class="wrapper">
-                                <span class="price fleft">${product.price}</span>
+                                <span class="price fleft"> Giá :${product.price}</span>
                                 <a id="${product.id}" class="button fright" data-bs-toggle="modal" data-bs-target="#exampleModal"  onclick="showSlideModel(${product.id})">Read more</a>
                                 </div>
                         </div>
@@ -54,7 +54,7 @@ function showProductUser() {
     })
 
 }
-
+console.log(localStorage.getItem("id"))
 function showSlideModel(id) {
     $.ajax({
         type: "GET",
@@ -87,10 +87,20 @@ function showSlideModel(id) {
                              <p class="color-4 prev-indent-bot">${products.name}</>
                              <p>${products.description}</p>
                              <div class="wrapper">
-                                <span class="price fleft">${products.price}</span>
+                                <span class="price fleft" style="padding-left: 30px;">Giá tiền: ${products.price}</span>
 <!--                              id, description, name, price, status, category_id, avgPoints, amount  ?-->
+                            <div style="float:right;width: 600px">`
+
+            if (localStorage.getItem("id")!=null)
+            {
+                str += ` <input width="50px" style="" id="cmttxt" type="text" > 
+                <a  type="button" class="btn btn-light" onclick="createCmt()" >comment</a>                                       `
+            }else str+=``
+
+            str += `
                                 <a  class="button fright" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="addToCart('${id}', '${products.description}', '${products.name}', '${products.price}', 'còn' ,'1' , '2', '1')">Buy</a>
-                                <a  class="button fright"  onclick="showCmt(${id})">Comment</a>
+                                <a   class="button fright"  onclick="showCmt(${id})">Comment</a></div>
+                                
                                </div>
                         </div>
                      `
@@ -184,7 +194,7 @@ function showImage(id) {
                 let str = ``
                 str += `${id}`
                 str += `${i}`
-                document.getElementById(str).setAttribute("src", images[i].name)
+                document.getElementById(str).setAttribute("src", images[i].img)
             }
 
         },
@@ -212,7 +222,7 @@ function showImage2(id) {
                 str += `${i}`
                 str += `${id}`
 
-                document.getElementById(str).setAttribute("src", images[i].name)
+                document.getElementById(str).setAttribute("src", images[i].img)
                 console.log(str)
             }
 
@@ -283,7 +293,9 @@ function clearCmt() {
         }
     })
 }
+
 let cartList = [];
+
 class cart {
     constructor(id, description, name, price, status, category_id, avgPoints, amount) {
         this.id = id;
@@ -296,6 +308,7 @@ class cart {
         this.amount = amount;
     }
 }
+
 function addToCart(id, description, name, price, status, category_id, avgPoints, amount) {
 
 
