@@ -32,6 +32,8 @@
                                         <div id="errorDuplicateUsername" ></div>
 
                                     </div>
+
+
                                     <div class="form-group">
                                         <label for="password">Password:</label>
                                         <input type="password" class="form-control" id="password"
@@ -39,26 +41,36 @@
 
 
                                     </div>
+
+
                                     <div class="form-group">
                                         <label for="img">Avatar:</label>
                                         <input type="file" class="form-control" id="img"
-                                               placeholder="Enter password" name="pswd" required onchange="showImg()">
+                                               placeholder="Enter img" name="pswd" required onchange="showImg()">
                                         <img id="blah" src="#" alt="your image" height="270" width="400" />
 
                                     </div>
+
+
                                     <div class="form-group">
-                                        <label for="password">Address:</label>
-                                        <input type="password" class="form-control" id="address"
-                                               placeholder="Enter password" name="pswd" required>
+                                        <label for="address">Address:</label>
+                                        <input type="text" class="form-control" id="address"
+                                               placeholder="Enter address" name="pswd" required>
 
                                     </div>
+
+
+
                                     <div class="form-group">
-                                        <label for="password">Phone:</label>
-                                        <input type="password" class="form-control" id="phone"
-                                               placeholder="Enter password" name="pswd" required>
+                                        <label for="phone">Phone:</label>
+                                        <input type="text" class="form-control" id="phone"
+                                               placeholder="Enter phone" name="pswd" required>
                                         <div id="errorSortPassword" ></div>
 
                                     </div>
+
+
+
                                     <div class="form-group">
                                         <input type="hidden" id="role" class="form-control form-control-lg" value="2"/>
                                     </div>
@@ -73,59 +85,7 @@
                                     <button type="button" onclick="upImg()" class="btn btn-primary">Submit</button>
                                 </form>
 
-                                <!--                                <form>-->
 
-                                <!--                                    <div class="d-flex align-items-center mb-3 pb-1">-->
-                                <!--                                        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>-->
-                                <!--                                        <span class="h1 fw-bold mb-0">Create an account</span>-->
-                                <!--                                    </div>-->
-
-
-                                <!--                                    <div class="form-outline mb-4">-->
-                                <!--                                        <input type="text" id="username" class="form-control form-control-lg" placeholder="Username" onchange="checkDuplicateUserName(this.value)"/>-->
-                                <!--                                        <div id="errorDuplicateUsername" ></div>-->
-                                <!--                                    </div>-->
-
-                                <!--                                    <div class="form-outline mb-4">-->
-                                <!--                                        <input type="password" id="password" class="form-control form-control-lg" placeholder="Password" onchange="checkSortPassword(this.value)" />-->
-                                <!--                                        <div id="errorSortPassword" ></div>-->
-
-                                <!--                                    </div>-->
-
-                                <!--                                    <div class="form-outline mb-4">-->
-                                <!--                                        <input type="password" class="form-control form-control-lg" id="repeatPassword" placeholder="Repeat Password" onchange="checkDuplicatePassword(this.value)"/>-->
-                                <!--                                        <div id="errorDuplicatePassword" ></div>-->
-
-                                <!--                                    </div>-->
-
-                                <!--                                    <div class="form-outline mb-4">-->
-                                <!--                                        <input type="file" id="img" class="form-control form-control-lg" onchange="showImg()" placeholder="File"/>-->
-                                <!--                                        <img id="blah" src="#" alt="your image" height="270" width="400" />-->
-
-                                <!--                                    </div>-->
-
-                                <!--                                    <div class="form-outline mb-4">-->
-                                <!--                                        <input type="text" id="address" class="form-control form-control-lg" placeholder="Address" />-->
-                                <!--                                    </div>-->
-
-                                <!--                                    <div class="form-outline mb-4">-->
-                                <!--                                        <input type="text" id="phone" class="form-control form-control-lg" placeholder="Phone number" />-->
-                                <!--                                    </div>-->
-
-                                <!--                                    <div class="form-outline mb-4">-->
-                                <!--                                        <input type="hidden" id="role" class="form-control form-control-lg" value="2"/>-->
-                                <!--                                    </div>-->
-
-
-                                <!--                                    <div class="form-outline mb-4" id="errorEmpty">-->
-
-                                <!--                                    </div>-->
-
-                                <!--                                    <div class="pt-1 mb-4">-->
-                                <!--                                        <button class="btn btn-dark btn-lg btn-block" type="button" onclick="upImg()">Submit</button>-->
-                                <!--                                    </div>-->
-
-                                <!--                                </form>-->
 
                             </div>
                         </div>
@@ -135,6 +95,6 @@
         </div>
     </div>
 </section>
-<script src="js/account_Hoanh.js"></script>
+<script src="account_Hoanh.js"></script>
 </body>
 </html>
