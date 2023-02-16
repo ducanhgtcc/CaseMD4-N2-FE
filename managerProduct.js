@@ -169,6 +169,37 @@ function findByNameLike(){
     })
 }
 
+function showProductByCategoryId() {
+    let id = document.getElementById("showByCategoryId").value;
+    $.ajax({
+        type: "Get",
+        headers: {
+            'Accept': 'application/json'
+        },
+        url: "http://localhost:8080/admin/products/showByCategoryId/" + id,
+        success: function (products) {
+            console.log(products)
+            let str = '';
+            for (const p of products) {
+                str += `<tr>
+                        <td>${p.id}</td>
+                        <td>${p.name}</td>
+                        <td>${p.description}</td>
+                        <td>${p.price}</td>
+                        <td>${p.status}</td>
+                        <td>${p.category.name}</td>
+<!--          <td><a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a></td>-->
+          <td><a href="#" class="edit" title="Edit" data-toggle="tooltip" onclick="showEdit(${p.id})" data-bs-toggle="modal" data-bs-target="#myModal"><i class="material-icons">&#xE254;</i></a></td>
+          <td><a href="#" class="delete" title="Delete" data-toggle="tooltip" onclick="setStatus(${p.id})"><i class="material-icons">&#xE872;</i></a></td>
+                        </tr>`
+            }
+            document.getElementById("showAllProduct").innerHTML = str;
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}
 
 
 
@@ -188,6 +219,7 @@ function showIdCategory() {
                       <option value="${c.id}">${c.name}</option>`
             }
             document.getElementById("idCatagory").innerHTML = str;
+            document.getElementById("showByCategoryId").innerHTML = str;
         },
         error: function (err) {
             console.log(err)

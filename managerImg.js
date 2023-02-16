@@ -115,7 +115,7 @@ function showEdit(id) {
         success: function (anh) {
             document.getElementById("id").value = anh.id;
 
-            $("#img").val(blog.img);
+            $("#img").val(anh.img);
             $("#idProduct").val(anh.product.id);
         },
         error: function (err) {
@@ -140,6 +140,40 @@ function deleteImg(id){
     })
 }
 
+function showImgByProductId() {
+    let id = document.getElementById("showByProductName").value
+
+
+    $.ajax({
+        type: "GET",
+        headers: {
+            'Accept': 'application/json',
+            // 'Authorization': 'Bearer ' + localStorage.getItem("token")
+        },
+        url: "http://localhost:8080/admin/images/search/" + id,
+        //xử lý khi thành công
+        success: function (imgs) {
+            console.log(imgs)
+            let str = '';
+            for (const i of imgs) {
+                str += `<tr>
+                        <td>${i.id}</td>
+                        <td><img src="${i.img}" width="300" height="200"></td>
+                        <td>${i.product.name}</td>
+                        <td><a href="#" class="edit" title="Edit" data-toggle="tooltip" onclick="showEdit(${i.id})" data-bs-toggle="modal" data-bs-target="#myModal"><i class="material-icons">&#xE254;</i></a></td>
+                        <td><a href="#" class="delete" title="Delete" data-toggle="tooltip" onclick="deleteImg(${i.id})"><i class="material-icons">&#xE872;</i></a></td>
+                        </tr>`
+            }
+
+            document.getElementById("showImg").innerHTML = str;
+
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}
+
 
 
 function showIdProduct() {
@@ -157,6 +191,7 @@ function showIdProduct() {
                       <option value="${p.id}">${p.name}</option>`
             }
             document.getElementById("idProduct").innerHTML = str;
+            document.getElementById("showByProductName").innerHTML = str;
         },
         error: function (err) {
             console.log("wrong")
