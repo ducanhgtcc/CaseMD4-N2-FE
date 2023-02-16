@@ -14,7 +14,7 @@ function showAll(){
             'Accept': 'application/json',
             // 'Authorization': 'Bearer ' + localStorage.getItem("token")
         },
-        url: "http://localhost:8080/admin/images/",
+        url: "http://localhost:8080/images/admin/",
         //xử lý khi thành công
         success: function (imgs) {
             console.log(imgs)
@@ -61,7 +61,7 @@ function upImg(){
         },
         type: "POST",
         data: formData,
-        url: "http://localhost:8080/admin/images/upImg",
+        url: "http://localhost:8080/images/admin/upImg",
         success: function (img) {
             create(img)
         }
@@ -88,7 +88,7 @@ function create(img) {
             // 'Authorization': 'Bearer ' + localStorage.getItem("token")
 
         },
-        url: "http://localhost:8080/admin/images",
+        url: "http://localhost:8080/images/admin",
         data: JSON.stringify(anh),
         //xử lý khi thành công
         success: function (data) {
@@ -110,12 +110,12 @@ function showEdit(id) {
             // 'Authorization': 'Bearer ' + localStorage.getItem("token")
 
         },
-        url: "http://localhost:8080/admin/images/" + id,
+        url: "http://localhost:8080/images/admin/" + id,
         //xử lý khi thành công
         success: function (anh) {
             document.getElementById("id").value = anh.id;
 
-            $("#img").val(blog.img);
+            $("#img").val(anh.img);
             $("#idProduct").val(anh.product.id);
         },
         error: function (err) {
@@ -130,9 +130,43 @@ function deleteImg(id){
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/images/" + id,
+        url: "http://localhost:8080/images/admin/" + id,
         success: function (i) {
             showAll()
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}
+
+function showImgByProductId() {
+    let id = document.getElementById("showByProductName").value
+
+
+    $.ajax({
+        type: "GET",
+        headers: {
+            'Accept': 'application/json',
+            // 'Authorization': 'Bearer ' + localStorage.getItem("token")
+        },
+        url: "http://localhost:8080/images/admin/search/" + id,
+        //xử lý khi thành công
+        success: function (imgs) {
+            console.log(imgs)
+            let str = '';
+            for (const i of imgs) {
+                str += `<tr>
+                        <td>${i.id}</td>
+                        <td><img src="${i.img}" width="300" height="200"></td>
+                        <td>${i.product.name}</td>
+                        <td><a href="#" class="edit" title="Edit" data-toggle="tooltip" onclick="showEdit(${i.id})" data-bs-toggle="modal" data-bs-target="#myModal"><i class="material-icons">&#xE254;</i></a></td>
+                        <td><a href="#" class="delete" title="Delete" data-toggle="tooltip" onclick="deleteImg(${i.id})"><i class="material-icons">&#xE872;</i></a></td>
+                        </tr>`
+            }
+
+            document.getElementById("showImg").innerHTML = str;
+
         },
         error: function (err) {
             console.log(err)
@@ -148,7 +182,7 @@ function showIdProduct() {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/products",
+        url: "http://localhost:8080/products/admin",
         success: function (products) {
             console.log(products)
             let str = '';
@@ -157,6 +191,7 @@ function showIdProduct() {
                       <option value="${p.id}">${p.name}</option>`
             }
             document.getElementById("idProduct").innerHTML = str;
+            document.getElementById("showByProductName").innerHTML = str;
         },
         error: function (err) {
             console.log("wrong")

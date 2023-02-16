@@ -6,7 +6,7 @@ function showAllCategory() {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/categories",
+        url: "http://localhost:8080/categories/admin",
         success: function (categories) {
             console.log(categories)
             let str = '';
@@ -50,7 +50,7 @@ function create() {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        url: "http://localhost:8080/admin/categories",
+        url: "http://localhost:8080/categories/admin",
         data: JSON.stringify(category),
         success: function (data) {
             showAllCategory();
@@ -68,7 +68,7 @@ function isDuplicateName(name) {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/categories/checkname/" + name,
+        url: "http://localhost:8080/categories/admin/checkname/" + name,
         success: function (product) {
 
         },
@@ -86,7 +86,7 @@ function showEdit(id) {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/categories/" + id,
+        url: "http://localhost:8080/categories/admin/" + id,
         success: function (p) {
 
             $("#id").val(p.id);
@@ -104,7 +104,7 @@ function deleteCategory(id) {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/categories/" + id,
+        url: "http://localhost:8080/categories/admin/" + id,
         success: function (p) {
             alert("Thành công")
             showAllCategory()
@@ -121,7 +121,7 @@ function findByNameLike() {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/categories/search/" + name,
+        url: "http://localhost:8080/categories/admin/search/" + name,
         success: function (products) {
             console.log(products)
             let str = '';
