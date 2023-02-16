@@ -14,7 +14,7 @@ function showAll(){
             'Accept': 'application/json',
             // 'Authorization': 'Bearer ' + localStorage.getItem("token")
         },
-        url: "http://localhost:8080/admin/images/",
+        url: "http://localhost:8080/images/admin/",
         //xử lý khi thành công
         success: function (imgs) {
             console.log(imgs)
@@ -61,7 +61,7 @@ function upImg(){
         },
         type: "POST",
         data: formData,
-        url: "http://localhost:8080/admin/images/upImg",
+        url: "http://localhost:8080/images/admin/upImg",
         success: function (img) {
             create(img)
         }
@@ -88,7 +88,7 @@ function create(img) {
             // 'Authorization': 'Bearer ' + localStorage.getItem("token")
 
         },
-        url: "http://localhost:8080/admin/images",
+        url: "http://localhost:8080/images/admin",
         data: JSON.stringify(anh),
         //xử lý khi thành công
         success: function (data) {
@@ -110,7 +110,7 @@ function showEdit(id) {
             // 'Authorization': 'Bearer ' + localStorage.getItem("token")
 
         },
-        url: "http://localhost:8080/admin/images/" + id,
+        url: "http://localhost:8080/images/admin/" + id,
         //xử lý khi thành công
         success: function (anh) {
             document.getElementById("id").value = anh.id;
@@ -130,7 +130,7 @@ function deleteImg(id){
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/images/" + id,
+        url: "http://localhost:8080/images/admin/" + id,
         success: function (i) {
             showAll()
         },
@@ -150,7 +150,7 @@ function showImgByProductId() {
             'Accept': 'application/json',
             // 'Authorization': 'Bearer ' + localStorage.getItem("token")
         },
-        url: "http://localhost:8080/admin/images/search/" + id,
+        url: "http://localhost:8080/images/admin/search/" + id,
         //xử lý khi thành công
         success: function (imgs) {
             console.log(imgs)
@@ -182,7 +182,7 @@ function showIdProduct() {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/products",
+        url: "http://localhost:8080/products/admin",
         success: function (products) {
             console.log(products)
             let str = '';

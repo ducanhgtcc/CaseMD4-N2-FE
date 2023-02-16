@@ -6,7 +6,7 @@ function showAllProduct() {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/products",
+        url: "http://localhost:8080/products/admin",
         success: function (products) {
             console.log(products)
             let str = '';
@@ -17,7 +17,8 @@ function showAllProduct() {
                         <td>${p.description}</td>
                         <td>${p.price}</td>
                         <td>${p.status}</td>
-                        <td>${p.category.name}</td>
+                        <td>${p.category.name}</td> 
+                        <td>${p.avgPoint}</td>
 <!--          <td><a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a></td>-->
           <td><a href="#" class="edit" title="Edit" data-toggle="tooltip" onclick="showEdit(${p.id})" data-bs-toggle="modal" data-bs-target="#myModal"><i class="material-icons">&#xE254;</i></a></td>
           <td><a href="#" class="delete" title="Delete" data-toggle="tooltip" onclick="setStatus(${p.id})"><i class="material-icons">&#xE872;</i></a></td>
@@ -41,6 +42,7 @@ function clearEdit() {
     $("#price").val("");
     $("#status").val("");
     $("#idCatagory").val("");
+    $("#avgPoint").val("");
 }
 
 function create() {
@@ -51,7 +53,8 @@ function create() {
         "status": $("#status").val(),
         "category": {
             "id": $("#idCatagory").val(),
-        }
+        },
+        "avgPoint": $("#avgPoint").val(),
 
     }
     console.log("product", product)
@@ -64,7 +67,7 @@ function create() {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        url: "http://localhost:8080/admin/products",
+        url: "http://localhost:8080/products/admin",
         data: JSON.stringify(product),
         success: function (data) {
             showAllProduct();
@@ -81,7 +84,7 @@ function isDuplicateName(name) {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/products/check/" + name,
+        url: "http://localhost:8080/products/admin/check/" + name,
         success: function (product) {
             // if (product!=null){
             //
@@ -101,7 +104,7 @@ function showEdit(id) {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/products/" + id,
+        url: "http://localhost:8080/products/admin/" + id,
         success: function (p) {
 
             $("#id").val(p.id);
@@ -110,7 +113,7 @@ function showEdit(id) {
             $("#price").val(p.price);
             $("#status").val(p.status);
             $("#idCatagory").val(p.category.id);
-
+            $("#avgPoint").val(p.avgPoint);
         },
         error: function (err) {
             console.log(err)
@@ -126,7 +129,7 @@ function showEdit(id) {
               headers: {
                   'Accept': 'application/json'
               },
-              url: "http://localhost:8080/admin/products/setStatus/" + id,
+              url: "http://localhost:8080/products/admin/setStatus/" + id,
               success: function (p) {
 
                  showAllProduct()
@@ -144,7 +147,7 @@ function findByNameLike(){
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/products/search/" + name,
+        url: "http://localhost:8080/products/admin/search/" + name,
         success: function (products) {
             console.log(products)
             let str = '';
@@ -156,6 +159,7 @@ function findByNameLike(){
                         <td>${p.price}</td>
                         <td>${p.status}</td>
                         <td>${p.category.name}</td>
+                        <td>${p.avgPoint}</td>
 <!--          <td><a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a></td>-->
           <td><a href="#" class="edit" title="Edit" data-toggle="tooltip" onclick="showEdit(${p.id})" data-bs-toggle="modal" data-bs-target="#myModal"><i class="material-icons">&#xE254;</i></a></td>
           <td><a href="#" class="delete" title="Delete" data-toggle="tooltip" onclick="setStatus(${p.id})"><i class="material-icons">&#xE872;</i></a></td>
@@ -176,7 +180,7 @@ function showProductByCategoryId() {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/products/showByCategoryId/" + id,
+        url: "http://localhost:8080/products/admin/showByCategoryId/" + id,
         success: function (products) {
             console.log(products)
             let str = '';
@@ -188,6 +192,7 @@ function showProductByCategoryId() {
                         <td>${p.price}</td>
                         <td>${p.status}</td>
                         <td>${p.category.name}</td>
+                        <td>${p.avePoint}</td>
 <!--          <td><a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a></td>-->
           <td><a href="#" class="edit" title="Edit" data-toggle="tooltip" onclick="showEdit(${p.id})" data-bs-toggle="modal" data-bs-target="#myModal"><i class="material-icons">&#xE254;</i></a></td>
           <td><a href="#" class="delete" title="Delete" data-toggle="tooltip" onclick="setStatus(${p.id})"><i class="material-icons">&#xE872;</i></a></td>
@@ -210,7 +215,7 @@ function showIdCategory() {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/admin/categories",
+        url: "http://localhost:8080/categories/admin",
         success: function (categories) {
             console.log(categories)
             let str = '';
