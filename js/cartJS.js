@@ -50,7 +50,7 @@ function pay() {
 
     let bill = {
         "id": "",
-        "date": today,
+        "date":  new Date().toLocaleString(),
         "account": {"id": localStorage.getItem("id")}
     }
 
@@ -96,6 +96,8 @@ function createBillDetails() {
             //xử lý khi thành công
             success: function () {
                 // alert("Thành công");
+                localStorage.setItem("carts", JSON.stringify(""));
+                location.reload();
             },
             error: function (err) {
                 console.log(err)
