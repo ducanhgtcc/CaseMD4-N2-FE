@@ -116,7 +116,7 @@ function showSlideModel(id) {
             console.log(err)
         }
     })
-
+    showRating(id)
 }
 
 showProductUser();
@@ -389,4 +389,80 @@ console.log(cmt)
         })
 
 
+}
+function getRatingProduct(id){
+    $.ajax({
+
+        type: "GET",
+        headers: {
+            'Accept': 'application/json'
+        },
+        url: "http://localhost:8080/ratings/getAvgPoint/" + id,
+        //xử lý khi thành công
+        success: function (data) {
+            console.log(data)
+            document.getElementById("point").innerHTML = data;
+
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+}
+function showRating(idProduct){
+
+            let str = ``;
+            str+= `<div style="float: left" class="container d-flex  mt-5">
+                        <div class="card  mb-5">
+                            <div class="rate  py-3 text-white mt-3">
+                                <h6 class="mb-0">Rate of product: <b id="point"></b></h6>
+                                <div class="rating">
+                                 <input type="radio" name="rating" value="5" id="5l"><label onclick="vote(${idProduct},this.id)" id="5" for="5l">☆</label>
+                                 <input type="radio" name="rating" value="4" id="4l"><label onclick="vote(${idProduct},this.id)" id="4" for="4l">☆</label> 
+                                 <input type="radio" name="rating" value="3" id="3l"><label onclick="vote(${idProduct},this.id)" id="3" for="3l">☆</label>
+                                 <input type="radio" name="rating" value="2" id="2l"><label onclick="vote(${idProduct},this.id)" id="2" for="2l">☆</label> 
+                                 <input type="radio" name="rating" value="1" id="1l"><label onclick="vote(${idProduct},this.id)" id="1" for="1l">☆</label>
+                                </div>
+                                <button class="btn btn-warning btn-block rating-submit">Submit</button>
+                                <div  class="buttons px-4 mt-0">
+                                </div>
+                            </div>
+                        </div>
+            `
+            document.getElementById("ratingShow").innerHTML = str;
+
+getRatingProduct(idProduct)
+
+
+}
+function  vote(idProduct, points){
+    let vote = {
+        "id": "",
+        "point": points,
+        "account": {
+            "id": localStorage.getItem("id"),
+        },
+        "product": {
+            "id": idProduct,
+        }
+    }
+    console.log(vote)
+    $.ajax({
+        type: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            // 'Authorization': 'Bearer ' + localStorage.getItem("token")
+
+        },
+        url: "http://localhost:8080/ratings",
+        data: JSON.stringify(vote),
+        //xử lý khi thành công
+        success: function () {
+            alert("vote  Thành công");
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
 }
