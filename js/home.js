@@ -5,7 +5,7 @@ function showAllCatalogue() {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/images",
+        url: "http://localhost:8080/images/user",
         //Gửi dữ liệu từ WebService về nên không cần ép kiểu (data: JSON.stringify(----),)
         //Xử lý sau khi ajax nhận hết các thông tin ở trên
         success: function (imgs) {
@@ -37,7 +37,7 @@ function showSlide() {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/images",
+        url: "http://localhost:8080/images/user",
         //Gửi dữ liệu từ WebService về nên không cần ép kiểu (data: JSON.stringify(----),)
         //Xử lý sau khi ajax nhận hết các thông tin ở trên
         success: function (imgs) {

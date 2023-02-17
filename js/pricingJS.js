@@ -5,7 +5,7 @@ function showProductUser() {
         headers: {
             'Accept': 'application/json'
         },
-        url: "http://localhost:8080/products",
+        url: "http://localhost:8080/products/user",
         //Gửi dữ liệu từ WebService về nên không cần ép kiểu (data: JSON.stringify(----),)
         //Xử lý sau khi ajax nhận hết các thông tin ở trên
         success: function (products) {
@@ -61,7 +61,7 @@ function showSlideModel(id) {
         headers: {
             'Accept': 'application/json',
         },
-        url: "http://localhost:8080/products/" + id,
+        url: "http://localhost:8080/products/user/" + id,
         //xử lý khi thành công
         success: function (products) {
             let str = ``
