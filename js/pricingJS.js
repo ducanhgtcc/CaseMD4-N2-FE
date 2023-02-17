@@ -423,7 +423,7 @@ function showRating(idProduct){
                                  <input type="radio" name="rating" value="2" id="2l"><label onclick="vote(${idProduct},this.id)" id="2" for="2l">☆</label> 
                                  <input type="radio" name="rating" value="1" id="1l"><label onclick="vote(${idProduct},this.id)" id="1" for="1l">☆</label>
                                 </div>
-                                <button class="btn btn-warning btn-block rating-submit">Submit</button>
+<!--                                <button class="btn btn-warning btn-block rating-submit">Submit</button>-->
                                 <div  class="buttons px-4 mt-0">
                                 </div>
                             </div>

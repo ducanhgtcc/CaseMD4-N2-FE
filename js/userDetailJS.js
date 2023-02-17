@@ -15,7 +15,7 @@ function showBill() {
             <thead>
             <tr>
                 <th>Thời gian mua hàng</th>
-                <th>Số lượng</th>
+             
                 <th>giá tiền</th>
             </tr>
             </thead>
@@ -29,10 +29,10 @@ function showBill() {
             <tr>
             
                 <td>${c.date}</td>
-                <td>${c.price}</td>
+                
                 <td><p id="img_${c.id}" ></p></td>
                 
-                <td><a type="button" class="btn btn-light" onclick="showSumBill(${c.id},i )">Delete</a>
+                <td><a type="button" class="btn btn-light" onclick="showSumBill(${c.id},i )">Detail</a>
                 
 </td>
             </tr>`
