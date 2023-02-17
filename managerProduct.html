@@ -206,7 +206,7 @@
         <input placeholder="Product Description" id="description"><br>
         <input placeholder="Product Price" id="price"><br>
         <input placeholder="Product Status" id="status"><br>
-
+        <input  id="avgPoint" hidden><br>
         <select id="idCatagory">
 
         </select>
@@ -234,7 +234,7 @@
               <input id="text" type="text" placeholder="Search By Name Like" name="search2">
               <button onclick="findByNameLike()" type="button"><i class="fa fa-search"></i></button>
 
-            </di>
+            </div>
           </div>
         </div>
 <!--        thêm sửa xóa-->
@@ -245,6 +245,7 @@
           <button type="button" class="btn btn-primary"   onclick="showAllProduct()">
             Show All Product
           </button>
+          <select id="showByCategoryId" onclick="showProductByCategoryId()"></select>
 
         </div>
 
@@ -258,7 +259,7 @@
           <th>Price <i class="fa fa-sort"></i></th>
           <th>Status</th>
           <th>Categories <i class="fa fa-sort"></i></th>
-
+          <th>Avg Point</th>
           <th colspan="3" >Action <i class="fa fa-sort"></i></th>
 
         </tr>
